@@ -572,6 +572,12 @@ message VectorIndexParameter {
     CreateBinaryIvfFlatParam binary_ivf_flat_parameter = 16;
   }
   ScalarSchema scalar_schema = 50;
+
+  // default false, if true, vector index will scalar pre-filtering with document index
+  bool enable_scalar_speed_up_with_document = 80;
+
+  // if enable_scalar_speed_up_with_document is true, this parameter will be used
+  DocumentIndexParameter document_index_parameter = 81;
 }
 
 message SearchFlatParam {
@@ -749,6 +755,13 @@ message VectorSearchParameter {
 
   // use brute-force search
   bool use_brute_force = 25;
+
+  // use document index to speed up scalar filtering
+  // default false, if true, vector index will scalar pre-filtering with document index filter
+  bool is_scalar_speed_up_with_document = 50;
+
+  // The query_string for search
+  string query_string = 51;
 }
 
 message BuildFlatParam {}
